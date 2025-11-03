@@ -44,7 +44,57 @@ export function analyzeWorkflowCredentials(config: {
 
       const s = step as Record<string, unknown>;
 
-      // Check inputs
+      // Extract credentials from module path (e.g., "social media.twitter.searchTweets" -> "twitter")
+      if (s.module && typeof s.module === 'string') {
+        const modulePath = s.module.toLowerCase();
+
+        // Check for Twitter modules
+        if (modulePath.includes('twitter')) {
+          credentials.add('twitter');
+        }
+        // Check for OpenAI modules
+        if (modulePath.includes('openai')) {
+          credentials.add('openai');
+        }
+        // Check for Anthropic modules
+        if (modulePath.includes('anthropic') || modulePath.includes('claude')) {
+          credentials.add('anthropic');
+        }
+        // Check for YouTube modules
+        if (modulePath.includes('youtube')) {
+          credentials.add('youtube');
+        }
+        // Check for Discord modules
+        if (modulePath.includes('discord')) {
+          credentials.add('discord');
+        }
+        // Check for Telegram modules
+        if (modulePath.includes('telegram')) {
+          credentials.add('telegram');
+        }
+        // Check for Instagram modules
+        if (modulePath.includes('instagram')) {
+          credentials.add('instagram');
+        }
+        // Check for Reddit modules
+        if (modulePath.includes('reddit')) {
+          credentials.add('reddit');
+        }
+        // Check for GitHub modules
+        if (modulePath.includes('github')) {
+          credentials.add('github');
+        }
+        // Check for Slack modules
+        if (modulePath.includes('slack')) {
+          credentials.add('slack');
+        }
+        // Check for RapidAPI modules
+        if (modulePath.includes('rapidapi')) {
+          credentials.add('rapidapi');
+        }
+      }
+
+      // Check inputs for {{user.platform}} patterns
       if (s.inputs) {
         extractFromValue(s.inputs);
       }
