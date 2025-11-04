@@ -65,13 +65,13 @@ export function WorkflowCard({ workflow, onDeleted, onExport, onUpdated }: Workf
     }
   };
 
-  const handleToggleStatus = async () => {
-    const newStatus = workflow.status === 'active' ? 'draft' : 'active';
+  const handleToggleStatus = async (checked: boolean) => {
+    const newStatus = checked ? 'active' : 'draft';
     setToggling(true);
     setOptimisticStatus(newStatus);
 
     try {
-      const response = await fetch(`/api/workflows/${workflow.id}/status`, {
+      const response = await fetch(`/api/workflows/${workflow.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
@@ -81,7 +81,7 @@ export function WorkflowCard({ workflow, onDeleted, onExport, onUpdated }: Workf
         throw new Error('Failed to update workflow status');
       }
 
-      toast.success(`Workflow ${newStatus === 'active' ? 'activated' : 'deactivated'}`);
+      toast.success(`Workflow ${checked ? 'activated' : 'deactivated'}`);
       onUpdated?.();
     } catch (error) {
       console.error('Error updating workflow status:', error);
