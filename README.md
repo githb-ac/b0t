@@ -278,7 +278,7 @@ That's it. Everything else is handled automatically.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/kenkai/b0t.git
+git clone https://github.com/KenKaiii/b0t.git
 cd b0t
 
 # 2. Run automated setup (installs dependencies, starts Docker services, sets up database)
