@@ -253,6 +253,45 @@ export async function updateCredential(
 }
 
 /**
+ * Update a credential name
+ */
+export async function updateCredentialName(
+  userId: string,
+  credentialId: string,
+  newName: string
+): Promise<void> {
+  logger.info(
+    {
+      userId,
+      credentialId,
+      action: 'credential_name_update_attempt',
+      timestamp: new Date().toISOString()
+    },
+    'Updating credential name'
+  );
+
+  await db
+    .update(userCredentialsTable)
+    .set({ name: newName })
+    .where(
+      and(
+        eq(userCredentialsTable.id, credentialId),
+        eq(userCredentialsTable.userId, userId)
+      )
+    );
+
+  logger.info(
+    {
+      userId,
+      credentialId,
+      action: 'credential_name_updated',
+      timestamp: new Date().toISOString()
+    },
+    'Credential name updated'
+  );
+}
+
+/**
  * Get credential fields (supports both single and multi-field credentials)
  * Returns a Record with field names as keys and decrypted values
  */

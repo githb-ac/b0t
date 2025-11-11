@@ -52,6 +52,10 @@ export default function CredentialsPage() {
     fetchCredentials();
   };
 
+  const handleCredentialUpdated = () => {
+    fetchCredentials();
+  };
+
   return (
     <DashboardLayout>
       <div className="p-6 space-y-4">
@@ -69,6 +73,7 @@ export default function CredentialsPage() {
           credentials={credentials}
           loading={loading}
           onCredentialDeleted={handleCredentialDeleted}
+          onCredentialUpdated={handleCredentialUpdated}
         />
 
         <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>

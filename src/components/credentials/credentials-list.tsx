@@ -8,12 +8,14 @@ interface CredentialsListProps {
   credentials: CredentialListItem[];
   loading: boolean;
   onCredentialDeleted: () => void;
+  onCredentialUpdated?: () => void;
 }
 
 export function CredentialsList({
   credentials,
   loading,
   onCredentialDeleted,
+  onCredentialUpdated,
 }: CredentialsListProps) {
   if (loading) {
     return (
@@ -42,6 +44,7 @@ export function CredentialsList({
           key={credential.id}
           credential={credential}
           onDeleted={onCredentialDeleted}
+          onUpdated={onCredentialUpdated}
         />
       ))}
     </div>

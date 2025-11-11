@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 /**
  * PATCH /api/credentials/[id]
- * Update a credential's value
+ * Update a credential's name and/or value
  */
 export async function PATCH(
   request: NextRequest,
@@ -22,19 +22,29 @@ export async function PATCH(
 
     const { id } = await context.params;
     const body = await request.json();
-    const { value } = body;
+    const { value, name } = body;
 
-    if (!value) {
+    // At least one field must be provided
+    if (!value && !name) {
       return NextResponse.json(
-        { error: 'Missing required field: value' },
+        { error: 'At least one field (name or value) must be provided' },
         { status: 400 }
       );
     }
 
-    await updateCredential(session.user.id, id, value);
+    // Update credential value if provided
+    if (value) {
+      await updateCredential(session.user.id, id, value);
+    }
+
+    // Update credential name if provided
+    if (name) {
+      const { updateCredentialName } = await import('@/lib/workflows/credentials');
+      await updateCredentialName(session.user.id, id, name);
+    }
 
     logger.info(
-      { userId: session.user.id, credentialId: id },
+      { userId: session.user.id, credentialId: id, updatedFields: { name: !!name, value: !!value } },
       'Credential updated'
     );
 
