@@ -113,7 +113,7 @@ class EmailTriggerPoller {
       .where(
         sql`
           ${workflowsTable.status} = 'active' AND
-          ${workflowsTable.trigger}->>'type' = 'gmail'
+          ${workflowsTable.trigger}::jsonb->>'type' = 'gmail'
         `
       );
 

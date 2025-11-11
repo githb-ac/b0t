@@ -77,7 +77,7 @@ class WorkflowScheduler {
         .where(
           sql`
             ${workflowsTable.status} = 'active' AND
-            ${workflowsTable.trigger}->>'type' = 'cron'
+            ${workflowsTable.trigger}::jsonb->>'type' = 'cron'
           `
         );
 
