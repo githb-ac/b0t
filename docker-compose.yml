@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: b0t_dev
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
-      - "5433:5432"
+      - "5434:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -28,7 +28,7 @@ services:
     restart: unless-stopped
     command: redis-server --appendonly yes
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - redis_data:/data
     healthcheck:
@@ -45,7 +45,7 @@ services:
     container_name: b0t-redis-commander
     restart: unless-stopped
     environment:
-      REDIS_HOSTS: local:redis:6379
+      REDIS_HOSTS: local:redis:6380
     ports:
       - "8081:8081"
     depends_on:

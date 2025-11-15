@@ -317,18 +317,24 @@ async function buildWorkflowFromPlan(planFile: string): Promise<void> {
     }
   }
 
-  // Import to database
-  console.log('📦 Importing to database...\n');
-  try {
-    execSync(`npx tsx scripts/import-workflow.ts "${workflowFile}"`, {
-      stdio: 'inherit',
-    });
-  } catch {
-    throw new Error('Workflow import failed');
-  }
+  // Import to database (can be disabled with --skip-import)
+  const skipImport = process.argv.includes('--skip-import');
+  if (!skipImport) {
+    console.log('📦 Importing to database...\n');
+    try {
+      execSync(`npx tsx scripts/import-workflow.ts "${workflowFile}"`, {
+        stdio: 'inherit',
+      });
+    } catch {
+      throw new Error('Workflow import failed');
+    }
 
-  console.log('\n🎉 SUCCESS! Workflow built and imported!\n');
-  console.log(`   View at: http://localhost:3000/dashboard/workflows\n`);
+    console.log('\n🎉 SUCCESS! Workflow built and imported!\n');
+    console.log(`   View at: http://localhost:3123/dashboard/workflows\n`);
+  } else {
+    console.log('\n✅ Workflow JSON created successfully!\n');
+    console.log(`   File: ${workflowFile}\n`);
+  }
 }
 
 // Main
