@@ -517,6 +517,8 @@ Open source. Self-hostable. No vendor lock-in. Fork it, modify it, deploy it, se
 ## Support & Community
 
 - **Docs:** [Full documentation](./docs/)
+  - Workflow Engine & Schema: [docs/workflow-engine.md](./docs/workflow-engine.md)
+  - Module Registry overview: [docs/module-registry.md](./docs/module-registry.md)
 - **Issues:** [GitHub Issues](https://github.com/kenkai/b0t/issues)
 - **Discussions:** [GitHub Discussions](https://github.com/kenkai/b0t/discussions)
 - **YouTube:** [@kenkaidoesai](https://youtube.com/@kenkaidoesai)
