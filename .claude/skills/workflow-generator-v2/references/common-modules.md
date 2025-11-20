@@ -1,12 +1,33 @@
-# Common Module Categories
+# Complete Module Categories
+
+## All Available Categories (16 total)
+
+1. **ai** - AI/ML models, agents, vector databases, text/image/video generation
+2. **business** - CRM, invoicing, sales (HubSpot, Salesforce, QuickBooks, DocuSign, etc.)
+3. **communication** - Messaging, email, notifications (Slack, Discord, Telegram, Gmail, Twilio, etc.)
+4. **content** - Media creation, design (Canva, Figma, Unsplash, Pexels, etc.)
+5. **data** - Databases, storage, analytics (PostgreSQL, MongoDB, Airtable, Google Sheets, Notion, etc.)
+6. **dataprocessing** - Big data, ETL, ML platforms (BigQuery, Snowflake, Kafka, HuggingFace, etc.)
+7. **devtools** - CI/CD, deployment, monitoring (GitHub, Vercel, Netlify, Sentry, DataDog, etc.)
+8. **ecommerce** - Online stores, marketplaces (Shopify, WooCommerce, Amazon, eBay, Etsy, etc.)
+9. **external-apis** - Third-party APIs (RapidAPI, HackerNews, etc.)
+10. **leads** - Lead generation, enrichment (Apollo, Hunter, Clearbit, PhantomBuster, etc.)
+11. **mcp** - MCP server management
+12. **payments** - Payment processing (Stripe, etc.)
+13. **productivity** - Calendars, forms, project management (Calendly, Linear, Typeform, etc.)
+14. **social** - Social media platforms (Twitter, LinkedIn, Reddit, Instagram, YouTube, etc.)
+15. **utilities** - Core utilities (math, arrays, strings, dates, JSON, HTTP, validation, etc.)
+16. **video** - Video processing (Heygen, Runway, ElevenLabs, Whisper, Vimeo, TikTok, etc.)
 
 ## How to Find Modules
+
+**ALWAYS search before building:**
 
 ```bash
 npm run modules:search <keyword>
 ```
 
-Use the `path` from search results as the `module` in your YAML plan.
+Use the exact `path` from search results in your YAML.
 
 ## Utilities (No API Keys)
 

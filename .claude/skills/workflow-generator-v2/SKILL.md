@@ -60,20 +60,26 @@ These files contain:
 
 **Do NOT proceed without reading BOTH files!**
 
-## Step 3: Search for Modules (If Needed)
+## Step 3: Search for Specific Modules
 
-If user needs specific functionality (math, AI, social media), search for modules:
+**REQUIRED: Use module search to find exact module paths for user's requirements.**
 
 ```bash
 npm run modules:search <keyword>
 ```
 
-Common categories:
-- `utilities.javascript` - Custom code execution
-- `utilities.math` - Mathematical operations
-- `utilities.array-utils` - Array operations
-- `ai.ai-sdk` - AI text generation
-- `social.*` - Social media actions
+Search examples based on user needs:
+- User wants math → `npm run modules:search add`
+- User wants AI → `npm run modules:search generate`
+- User wants Twitter → `npm run modules:search twitter`
+- User wants validation → `npm run modules:search validate`
+- User wants arrays → `npm run modules:search array`
+
+**CRITICAL:**
+- ALWAYS search for modules, don't guess paths
+- Use the exact `path` from search results in your YAML
+- Check the `signature` to see parameter names
+- Note if module has `wrapper` field (auto-wrapping handled by build script)
 
 ## Step 4: Build YAML Plan
 
