@@ -5,9 +5,12 @@ RUN apk add --no-cache git python3 make g++
 WORKDIR /app
 
 COPY package*.json ./
+
 RUN npm ci --legacy-peer-deps
 
 COPY . .
+
+ENV NODE_OPTIONS=--max_old_space_size=4096
 
 RUN npm run build
 
@@ -18,7 +21,6 @@ RUN npx tsx scripts/seed-admin.ts
 EXPOSE 3000
 
 ENV NODE_ENV=production
-ENV NODE_OPTIONS=--max_old_space_size=4096
 ENV HOSTNAME="0.0.0.0"
 ENV PORT=3000
 
