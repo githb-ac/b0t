@@ -16,7 +16,8 @@ RUN npm install --legacy-peer-deps --production=false
 # Copy the rest of the application code
 COPY . .
 
-# Build the application
+# Build the application with increased memory limit
+ENV NODE_OPTIONS="--max_old_space_size=4096"
 RUN npm run build
 
 # Expose port
