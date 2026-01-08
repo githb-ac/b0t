@@ -10,21 +10,17 @@ WORKDIR /app
 COPY package*.json ./
 COPY drizzle.config.ts ./
 
-# Install dependencies
-RUN npm ci --production=false || npm install --production=false
+# Install dependencies with legacy peer deps to resolve conflicts
+RUN npm install --legacy-peer-deps --production=false
 
 # Copy the rest of the application code
 COPY . .
 
-# Generate Prisma client and run build
+# Build the application
 RUN npm run build
 
 # Expose port
 EXPOSE 3000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD node -e "require('http').get('http://localhost:3000/api/services/status', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
 
 # Start the application
 CMD ["node", ".next/standalone/server.js"]
